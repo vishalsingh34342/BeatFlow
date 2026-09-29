@@ -16,6 +16,16 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
 
+  // Artist should not see normal user dashboard
+  if (user.role === "artist") {
+    return <Navigate to="/artist" replace />;
+  }
+
+  // Admin should not see normal user dashboard
+  if (user.role === "admin") {
+    return <Navigate to="/admin" replace />;
+  }
+
   return children;
 };
 
