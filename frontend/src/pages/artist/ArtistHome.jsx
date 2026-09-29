@@ -7,6 +7,7 @@ import {
   Disc3,
   Play,
   Trash2,
+  Pencil,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
@@ -20,6 +21,8 @@ const ArtistHome = () => {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // ================= FETCH MY SONGS =================
 
   const fetchMySongs = async () => {
     try {
@@ -44,6 +47,8 @@ const ArtistHome = () => {
   useEffect(() => {
     fetchMySongs();
   }, []);
+
+  // ================= DELETE SONG =================
 
   const handleDeleteSong = async (songId) => {
     const confirmed = window.confirm(
@@ -70,6 +75,8 @@ const ArtistHome = () => {
     }
   };
 
+  // ================= RECENT SONGS =================
+
   const recentSongs = [...songs]
     .sort(
       (a, b) =>
@@ -81,7 +88,8 @@ const ArtistHome = () => {
   return (
     <div className="text-white">
 
-      {/* Header */}
+      {/* ================= HEADER ================= */}
+
       <div className="mb-8">
         <p className="text-sm text-purple-400">
           Artist Dashboard
@@ -92,21 +100,25 @@ const ArtistHome = () => {
         </h1>
 
         <p className="mt-2 text-sm text-zinc-500">
-          Manage your music and share your songs with listeners.
+          Manage your music and share your songs with
+          listeners.
         </p>
       </div>
 
-      {/* Error */}
+      {/* ================= ERROR ================= */}
+
       {errorMessage && (
         <div className="mb-6 rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-400">
           {errorMessage}
         </div>
       )}
 
-      {/* Stats / Actions */}
+      {/* ================= STATS / ACTIONS ================= */}
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
         {/* Total Songs */}
+
         <div className="rounded-2xl border border-white/10 bg-zinc-900 p-5">
           <div className="flex items-center justify-between">
 
@@ -132,6 +144,7 @@ const ArtistHome = () => {
         </div>
 
         {/* Upload */}
+
         <Link
           to="/artist/upload"
           className="group rounded-2xl border border-white/10 bg-zinc-900 p-5 transition hover:border-purple-500/40 hover:bg-zinc-800"
@@ -156,6 +169,7 @@ const ArtistHome = () => {
 
           <div className="mt-5 flex items-center gap-2 text-sm text-purple-400">
             Upload now
+
             <ArrowRight
               size={16}
               className="transition group-hover:translate-x-1"
@@ -164,6 +178,7 @@ const ArtistHome = () => {
         </Link>
 
         {/* My Songs */}
+
         <Link
           to="/artist/songs"
           className="group rounded-2xl border border-white/10 bg-zinc-900 p-5 transition hover:border-purple-500/40 hover:bg-zinc-800"
@@ -188,6 +203,7 @@ const ArtistHome = () => {
 
           <div className="mt-5 flex items-center gap-2 text-sm text-purple-400">
             View songs
+
             <ArrowRight
               size={16}
               className="transition group-hover:translate-x-1"
@@ -197,7 +213,8 @@ const ArtistHome = () => {
 
       </div>
 
-      {/* Recent Uploads */}
+      {/* ================= RECENT UPLOADS ================= */}
+
       <div className="mt-8">
 
         <div className="mb-4 flex items-center justify-between">
@@ -222,6 +239,7 @@ const ArtistHome = () => {
         </div>
 
         {/* Loading */}
+
         {loading && (
           <div className="rounded-2xl border border-white/10 bg-zinc-900 p-10 text-center text-sm text-zinc-500">
             Loading your songs...
@@ -229,6 +247,7 @@ const ArtistHome = () => {
         )}
 
         {/* Empty */}
+
         {!loading && recentSongs.length === 0 && (
           <div className="rounded-2xl border border-white/10 bg-zinc-900 p-10 text-center">
 
@@ -256,17 +275,20 @@ const ArtistHome = () => {
           </div>
         )}
 
-        {/* Songs */}
+        {/* Recent Songs */}
+
         {!loading && recentSongs.length > 0 && (
           <div className="space-y-3">
 
             {recentSongs.map((song) => (
+
               <div
                 key={song._id}
                 className="flex items-center gap-4 rounded-2xl border border-white/10 bg-zinc-900 p-4 transition hover:border-purple-500/30 hover:bg-zinc-800"
               >
 
                 {/* Cover */}
+
                 <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-zinc-800">
 
                   {song.coverUrl ? (
@@ -284,6 +306,7 @@ const ArtistHome = () => {
                 </div>
 
                 {/* Song Info */}
+
                 <div className="min-w-0 flex-1">
 
                   <h3 className="truncate font-semibold">
@@ -300,9 +323,11 @@ const ArtistHome = () => {
                 </div>
 
                 {/* Actions */}
+
                 <div className="flex shrink-0 items-center gap-2">
 
                   {/* Play */}
+
                   <a
                     href={song.audioUrl}
                     target="_blank"
@@ -316,7 +341,18 @@ const ArtistHome = () => {
                     />
                   </a>
 
+                  {/* Edit */}
+
+                  <Link
+                    to={`/artist/songs/${song._id}/edit`}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-500 transition hover:border-purple-500/30 hover:bg-purple-500/10 hover:text-purple-400"
+                    title="Edit song"
+                  >
+                    <Pencil size={17} />
+                  </Link>
+
                   {/* Delete */}
+
                   <button
                     onClick={() =>
                       handleDeleteSong(song._id)
@@ -330,6 +366,7 @@ const ArtistHome = () => {
                 </div>
 
               </div>
+
             ))}
 
           </div>
