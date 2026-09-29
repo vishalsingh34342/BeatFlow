@@ -23,7 +23,7 @@ import Songs from "./pages/Songs";
 import Playlists from "./pages/Playlists";
 import LikedSongs from "./pages/LikedSongs";
 
-import UserProfilePage from "./pages/Profilepage";
+import UserProfilePage from "./pages/profilepage";
 import ArtistProfilePage from "./pages/artist/ProfilePage";
 
 import SettingPage from "./pages/SettingPage";
