@@ -8,8 +8,7 @@ import {
   Save,
   X,
 } from "lucide-react";
-
-import api from "../services/api";
+import api from "../../services/api";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);

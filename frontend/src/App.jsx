@@ -23,12 +23,14 @@ import Songs from "./pages/Songs";
 import Playlists from "./pages/Playlists";
 import LikedSongs from "./pages/LikedSongs";
 
-import ProfilePage from "./pages/ProfilePage";
+import UserProfilePage from "./pages/Profilepage";
+import ArtistProfilePage from "./pages/artist/ProfilePage";
+
 import SettingPage from "./pages/SettingPage";
+
 import ArtistHome from "./pages/artist/ArtistHome";
 import UploadSong from "./pages/artist/UploadSong";
 import MySongs from "./pages/artist/MySongs";
-import ArtistProfile from "./pages/artist/ArtistProfile";
 
 import AdminHome from "./pages/admin/AdminHome";
 import AdminUsers from "./pages/admin/AdminUsers";
@@ -37,8 +39,7 @@ import AdminSongs from "./pages/admin/AdminSongs";
 
 import Register from "./pages/Register";
 import VerifyOtp from "./pages/VerifyOtp";
-import LoginPage from './pages/artist/LoginPage'
-
+import LoginPage from "./pages/artist/LoginPage";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -47,7 +48,6 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <MusicPlayerProvider>
-
           <Routes>
 
             {/* ================= AUTH ================= */}
@@ -81,17 +81,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <Home />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -114,17 +110,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <Songs />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -147,17 +139,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <Playlists />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -180,17 +168,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <LikedSongs />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -213,17 +197,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
-                        <ProfilePage />
+                        <UserProfilePage />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -246,17 +226,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <SettingPage />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -266,7 +242,7 @@ function App() {
             />
 
 
-            {/* ================= ARTIST ================= */}
+            {/* ================= ARTIST HOME ================= */}
 
             <Route
               path="/artist"
@@ -279,17 +255,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <ArtistHome />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -312,17 +284,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <UploadSong />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -345,17 +313,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <MySongs />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -378,17 +342,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
-                        <ArtistProfile />
+                        <ArtistProfilePage />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -411,17 +371,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <AdminHome />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -444,17 +400,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
-                        <ProfilePage />
+                        <UserProfilePage />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -477,17 +429,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <AdminUsers />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -510,17 +458,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <AdminArtists />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -543,17 +487,13 @@ function App() {
                     />
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
-
                       <Navbar
-                        onMenuClick={() =>
-                          setSidebarOpen(true)
-                        }
+                        onMenuClick={() => setSidebarOpen(true)}
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <AdminSongs />
                       </div>
-
                     </main>
 
                     <MusicPlayer />
@@ -563,7 +503,6 @@ function App() {
             />
 
           </Routes>
-
         </MusicPlayerProvider>
       </AuthProvider>
     </BrowserRouter>
