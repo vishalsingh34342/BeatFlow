@@ -14,3 +14,13 @@ export const deleteSong = async (songId) => {
   const response = await api.delete(`/music/${songId}`);
   return response.data;
 };
+
+// ADD THIS
+export const editSong = async (songId, formData) => {
+  const response = await api.patch(
+    `/music/${songId}`,
+    formData
+  );
+
+  return response.data;
+};

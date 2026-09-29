@@ -31,6 +31,7 @@ import SettingPage from "./pages/SettingPage";
 import ArtistHome from "./pages/artist/ArtistHome";
 import UploadSong from "./pages/artist/UploadSong";
 import MySongs from "./pages/artist/MySongs";
+import EditSong from "./pages/artist/EditSong";
 
 import AdminHome from "./pages/admin/AdminHome";
 import AdminUsers from "./pages/admin/AdminUsers";
@@ -48,6 +49,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <MusicPlayerProvider>
+
           <Routes>
 
             {/* ================= AUTH ================= */}
@@ -82,7 +84,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -111,7 +115,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -140,7 +146,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -169,7 +177,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -198,7 +208,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -227,7 +239,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -256,11 +270,44 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
                         <ArtistHome />
+                      </div>
+                    </main>
+
+                    <MusicPlayer />
+                  </>
+                </RoleProtectedRoute>
+              }
+            />
+
+
+            {/* ================= ARTIST EDIT SONG ================= */}
+
+            <Route
+              path="/artist/songs/:id/edit"
+              element={
+                <RoleProtectedRoute role="artist">
+                  <>
+                    <ArtistSidebar
+                      sidebarOpen={sidebarOpen}
+                      setSidebarOpen={setSidebarOpen}
+                    />
+
+                    <main className="min-h-screen bg-black pl-0 lg:pl-64">
+                      <Navbar
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
+                      />
+
+                      <div className="p-4 pb-32 sm:p-6">
+                        <EditSong />
                       </div>
                     </main>
 
@@ -285,7 +332,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -314,7 +363,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -343,7 +394,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -372,7 +425,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -401,7 +456,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -430,7 +487,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -459,7 +518,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -488,7 +549,9 @@ function App() {
 
                     <main className="min-h-screen bg-black pl-0 lg:pl-64">
                       <Navbar
-                        onMenuClick={() => setSidebarOpen(true)}
+                        onMenuClick={() =>
+                          setSidebarOpen(true)
+                        }
                       />
 
                       <div className="p-4 pb-32 sm:p-6">
@@ -503,6 +566,7 @@ function App() {
             />
 
           </Routes>
+
         </MusicPlayerProvider>
       </AuthProvider>
     </BrowserRouter>
