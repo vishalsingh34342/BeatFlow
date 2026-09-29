@@ -256,12 +256,12 @@ const Songs = () => {
   // ================= UI =================
 
   return (
-    <div className="text-white">
+    <div className="min-w-0 text-white">
 
       {/* ================= HEADER ================= */}
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl font-bold sm:text-3xl">
           {searchQuery
             ? `Search results for "${searchQuery}"`
             : "Songs"}
@@ -292,117 +292,140 @@ const Songs = () => {
             return (
               <div
                 key={song._id}
-                className={`group flex flex-wrap items-center gap-4 rounded-2xl border p-4 transition ${
+                className={`rounded-2xl border p-3 transition sm:p-4 ${
                   isCurrentSong
                     ? "border-purple-500/40 bg-purple-500/5"
                     : "border-white/5 bg-zinc-900 hover:border-purple-500/20 hover:bg-zinc-800"
                 }`}
               >
 
-                {/* Number */}
+                {/* ================= SONG INFO + ACTIONS ================= */}
 
-                <span className="w-6 text-center text-sm text-zinc-600">
-                  {index + 1}
-                </span>
+                <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
 
-                {/* Cover */}
+                  {/* SONG INFO */}
 
-                <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-zinc-800">
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
 
-                  {song.coverUrl ? (
-                    <img
-                      src={song.coverUrl}
-                      alt={song.title}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center">
-                      <Play
-                        size={20}
-                        className="text-zinc-500"
-                      />
+                    {/* Number */}
+
+                    <span className="w-5 shrink-0 text-center text-xs text-zinc-600 sm:w-6 sm:text-sm">
+                      {index + 1}
+                    </span>
+
+                    {/* Cover */}
+
+                    <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-zinc-800 sm:h-14 sm:w-14">
+
+                      {song.coverUrl ? (
+                        <img
+                          src={song.coverUrl}
+                          alt={song.title}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center">
+                          <Play
+                            size={18}
+                            className="text-zinc-500"
+                          />
+                        </div>
+                      )}
+
                     </div>
-                  )}
+
+                    {/* Song Name */}
+
+                    <div className="min-w-0 flex-1">
+
+                      <h2
+                        title={song.title}
+                        className={`truncate text-sm font-semibold sm:text-base ${
+                          isCurrentSong
+                            ? "text-purple-400"
+                            : "text-white"
+                        }`}
+                      >
+                        {song.title}
+                      </h2>
+
+                      <p className="mt-1 text-xs text-zinc-500">
+                        {isCurrentSong && isPlaying
+                          ? "Now Playing"
+                          : "Music"}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                  {/* ================= ACTIONS ================= */}
+
+                  <div className="flex shrink-0 items-center justify-end gap-2 pl-8 sm:pl-0">
+
+                    {/* Play */}
+
+                    <button
+                      onClick={() =>
+                        handlePlaySong(song)
+                      }
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white transition sm:h-10 sm:w-10 ${
+                        isCurrentSong
+                          ? "bg-purple-500 hover:bg-purple-400"
+                          : "bg-purple-600 hover:bg-purple-500"
+                      }`}
+                      title="Play"
+                    >
+                      <Play
+                        size={16}
+                        fill="currentColor"
+                      />
+                    </button>
+
+                    {/* Like */}
+
+                    <button
+                      onClick={() =>
+                        handleLike(song._id)
+                      }
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-zinc-800 transition hover:border-purple-500/30 hover:bg-purple-500/10 sm:h-10 sm:w-10"
+                      title={
+                        isLiked
+                          ? "Unlike"
+                          : "Like"
+                      }
+                    >
+                      <Heart
+                        size={17}
+                        className={
+                          isLiked
+                            ? "fill-purple-500 text-purple-500"
+                            : "text-zinc-400"
+                        }
+                      />
+                    </button>
+
+                    {/* Add Playlist */}
+
+                    <button
+                      onClick={() =>
+                        handleOpenPlaylistModal(
+                          song
+                        )
+                      }
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-purple-500/20 bg-purple-500/10 text-purple-400 transition hover:bg-purple-500 hover:text-white sm:h-auto sm:w-auto sm:gap-2 sm:px-3 sm:py-2"
+                      title="Add to Playlist"
+                    >
+                      <Plus size={17} />
+
+                      <span className="hidden text-sm font-medium sm:inline">
+                        Add to Playlist
+                      </span>
+                    </button>
+
+                  </div>
 
                 </div>
-
-                {/* Song Info */}
-
-                <div className="min-w-0 flex-1">
-
-                  <h2
-                    className={`truncate font-semibold ${
-                      isCurrentSong
-                        ? "text-purple-400"
-                        : "text-white"
-                    }`}
-                  >
-                    {song.title}
-                  </h2>
-
-                  <p className="mt-1 text-sm text-zinc-500">
-                    {isCurrentSong && isPlaying
-                      ? "Now Playing"
-                      : "Music"}
-                  </p>
-
-                </div>
-
-                {/* Play */}
-
-                <button
-                  onClick={() =>
-                    handlePlaySong(song)
-                  }
-                  className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-white transition ${
-                    isCurrentSong
-                      ? "bg-purple-500 hover:bg-purple-400"
-                      : "bg-purple-600 hover:bg-purple-500"
-                  }`}
-                >
-                  <Play
-                    size={17}
-                    fill="currentColor"
-                  />
-                </button>
-
-                {/* Like */}
-
-                <button
-                  onClick={() =>
-                    handleLike(song._id)
-                  }
-                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-zinc-800 transition hover:border-purple-500/30 hover:bg-purple-500/10"
-                  title={
-                    isLiked
-                      ? "Unlike"
-                      : "Like"
-                  }
-                >
-                  <Heart
-                    size={18}
-                    className={
-                      isLiked
-                        ? "fill-purple-500 text-purple-500"
-                        : "text-zinc-400"
-                    }
-                  />
-                </button>
-
-                {/* Add Playlist */}
-
-                <button
-                  onClick={() =>
-                    handleOpenPlaylistModal(song)
-                  }
-                  className="flex items-center gap-2 rounded-lg border border-purple-500/20 bg-purple-500/10 px-3 py-2 text-sm font-medium text-purple-400 transition hover:bg-purple-500 hover:text-white"
-                >
-                  <Plus size={17} />
-
-                  <span className="hidden sm:inline">
-                    Add to Playlist
-                  </span>
-                </button>
 
               </div>
             );
@@ -411,10 +434,10 @@ const Songs = () => {
         </div>
       )}
 
-      {/* ================= EMPTY / NO SEARCH RESULT ================= */}
+      {/* ================= EMPTY ================= */}
 
       {filteredSongs.length === 0 && (
-        <div className="rounded-2xl border border-white/10 bg-zinc-900 p-10 text-center">
+        <div className="rounded-2xl border border-white/10 bg-zinc-900 p-8 text-center sm:p-10">
 
           <ListMusic
             size={40}
@@ -441,19 +464,19 @@ const Songs = () => {
       {showPlaylistModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
 
-          <div className="w-full max-w-md rounded-2xl border border-white/10 bg-zinc-900 p-6 shadow-2xl">
+          <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-white/10 bg-zinc-900 p-5 shadow-2xl sm:p-6">
 
             {/* Modal Header */}
 
-            <div className="flex items-start justify-between">
+            <div className="flex items-start justify-between gap-4">
 
-              <div>
+              <div className="min-w-0">
 
                 <h2 className="text-xl font-bold">
                   Add to Playlist
                 </h2>
 
-                <p className="mt-1 max-w-xs truncate text-sm text-zinc-500">
+                <p className="mt-1 truncate text-sm text-zinc-500">
                   {selectedSong?.title}
                 </p>
 
@@ -465,7 +488,7 @@ const Songs = () => {
                   setPlaylistError("");
                   setSuccessMessage("");
                 }}
-                className="rounded-lg p-2 text-zinc-500 hover:bg-zinc-800 hover:text-white"
+                className="shrink-0 rounded-lg p-2 text-zinc-500 hover:bg-zinc-800 hover:text-white"
               >
                 <X size={20} />
               </button>
@@ -516,15 +539,15 @@ const Songs = () => {
                       }`}
                     >
 
-                      <div className="flex items-center gap-3">
+                      <div className="flex min-w-0 items-center gap-3">
 
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
                           <ListMusic size={19} />
                         </div>
 
-                        <div>
+                        <div className="min-w-0">
 
-                          <p className="font-medium">
+                          <p className="truncate font-medium">
                             {playlist.name}
                           </p>
 
@@ -540,7 +563,7 @@ const Songs = () => {
                         playlist._id && (
                         <Check
                           size={20}
-                          className="text-purple-400"
+                          className="shrink-0 text-purple-400"
                         />
                       )}
 
