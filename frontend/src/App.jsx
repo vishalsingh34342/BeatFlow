@@ -25,7 +25,6 @@ import LikedSongs from "./pages/LikedSongs";
 
 import ProfilePage from "./pages/ProfilePage";
 import SettingPage from "./pages/SettingPage";
-
 import ArtistHome from "./pages/artist/ArtistHome";
 import UploadSong from "./pages/artist/UploadSong";
 import MySongs from "./pages/artist/MySongs";
@@ -38,7 +37,8 @@ import AdminSongs from "./pages/admin/AdminSongs";
 
 import Register from "./pages/Register";
 import VerifyOtp from "./pages/VerifyOtp";
-import Login from "./pages/login";
+import LoginPage from './pages/artist/LoginPage'
+
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -54,7 +54,7 @@ function App() {
 
             <Route
               path="/login"
-              element={<Login />}
+              element={<LoginPage />}
             />
 
             <Route
